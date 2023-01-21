@@ -20,43 +20,10 @@ var intro = document.querySelector(".intro-section");
 var questionsDiv = document.querySelector(".question-section");
 var questionTitle = document.querySelector("#question-title");
 var userChoices = document.getElementById("answers");
+var initials = document.querySelector(".add-initials")
+var secondsLeft = 40; // Time alloted for the quiz 
 
 var index = 0;
-
-function startQuiz() {
-    intro.classList.add("hide");
-    questionsDiv.classList.remove("hide");
-    runQuestions();
-    setTime();
-}
-
-function runQuestions() {
-    questionTitle.textContent = myQuestions[index].question;
-    option1.textContent = myQuestions[index].answers.a;
-    option2.textContent = myQuestions[index].answers.b;
-    option3.textContent = myQuestions[index].answers.c;
-    option4.textContent = myQuestions[index].answers.d; 
-}
-
-userChoices.addEventListener("click", function(event){
-    let chosen = event.target.textContent;
- 
-    if (chosen == myQuestions[index].correctAnswer) {
-        console.log("correct");
-    } else {
-        console.log("wrong");
-    }
-    showNext()
-})
-
-function showNext() {
-   index++
-   runQuestions();
-}
-
-
-
-var secondsLeft = 60; // Time alloted for the quiz 
 
 var myQuestions = [ 
     {    
@@ -111,14 +78,57 @@ var myQuestions = [
     }
 ];
 
+function startQuiz() {
+    intro.classList.add("hide");
+    questionsDiv.classList.remove("hide");
+    runQuestions();
+    setTime();
+}
+
+function runQuestions() {
+    questionTitle.textContent = myQuestions[index].question;
+    option1.textContent = myQuestions[index].answers.a;
+    option2.textContent = myQuestions[index].answers.b;
+    option3.textContent = myQuestions[index].answers.c;
+    option4.textContent = myQuestions[index].answers.d; 
+}
+
+userChoices.addEventListener("click", function(event){
+    let chosen = event.target.textContent;
+    if (chosen == myQuestions[index].correctAnswer) {
+        console.log("correct");
+    } else {
+        secondsLeft = secondsLeft - 5;
+        console.log("wrong");
+    }
+    showNext();
+})
+
+function showNext() {
+   index++
+   runQuestions();
+   if (myQuestions > myQuestions.length) {
+    endQuiz();
+   }
+}
+
+function addInitials() {
+    questionsDiv.classList.add("hide");
+    initials.classList.remove("hide");
+}
+
+function showScore() {
+    
+}
+
 function setTime() {
     var timerInterval = setInterval(function() {
         secondsLeft--;
         timeEl.textContent = "Time: " + secondsLeft;
 
-        if (secondsLeft === 0) {
+        if (secondsLeft <= 0) {
             clearInterval(timerInterval);
-            sendMessage();
+            endQuiz();
         }
     }, 1000);
 }
@@ -127,6 +137,11 @@ function sendMessage() {
     timeEl.textContent = "You ran out of time 😢";
 }
 
+function endQuiz() {
+    sendMessage();
+    addInitials();
+    showScore();
+}
 
 start.addEventListener("click", startQuiz);
 
