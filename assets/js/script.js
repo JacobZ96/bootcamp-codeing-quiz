@@ -1,21 +1,86 @@
-// var questions = [ // EXAMPLE OF QUESTION ARRAY FOR HW    
-//       question: "What is the capital of France?",
-//       answers: {
-//         1: "Paris",
-//         2: "London",
-//         3: "Berlin",
-//         4: "Rome"
-//       },
-//       correctAnswer: 1
-//     },
-//     {
-//       question: "What is the highest mountain in the world?",
-//       answers: {
-//         1: "Mount Everest",
-//         2: "K2",
-//         3: "Kangchenjunga",
-//         4: "Lhotse"
-//       },
-//       correctAnswer: 1
-//     }
-//   ];
+// GIVEN I am taking a code quiz
+// WHEN I click the start button
+// THEN a timer starts and I am presented with a question
+// WHEN I answer a question
+// THEN I am presented with another question
+// WHEN I answer a question incorrectly
+// THEN time is subtracted from the clock
+// WHEN all questions are answered or the timer reaches 0
+// THEN the game is over
+// WHEN the game is over
+// THEN I can save my initials and my score
+var timeEl = document.querySelector(".time");
+
+var secondsLeft = 45; // Time alloted for the quiz 
+
+var myQuestions = [ // Questions used for the quiz in an Array
+    {    
+      question: "What is the capital of France?",
+      answers: {
+        a: "Paris",
+        b: "London",
+        c: "Berlin",
+        d: "Rome"
+      },
+      correctAnswer: 'a'
+    },
+    {
+        question: "What is a tool used to debug code?",
+        answers: {
+            a: "console.log",
+            b: "Google",
+            c: "",
+            d: "",
+        },
+        correctAnswer: 'a'
+    },
+    {
+        question: "question 3",
+        answers: {
+            a: "",
+            b: "",
+            c: "",
+            d: "",
+        },
+        correctAnswer: 'a'
+    },
+    {
+        question: "question 4",
+        answers: {
+            a: "",
+            b: "",
+            c: "",
+            d: "",
+        },
+        correctAnswer: 'd'
+    },
+    {
+        question: "question 5",
+        answers: {
+            a: "",
+            b: "",
+            c: "",
+            d: "",
+        },
+        correctAnswer: 'c'
+    }
+];
+
+function setTime() {
+    var timerInterval = setInterval(function() {
+        secondsLeft--;
+        timeEl.textContent = secondsLeft + " time left";
+
+        if (secondsLeft === 0) {
+            clearInterval(timerInterval);
+            sendMessage();
+        }
+    }, 1000);
+}
+
+function sendMessage() {
+    timeEl.textContent = "You ran out of time 😢";
+}
+
+//setTime();
+document.getElementById("startBtn").onclick = setTime();
