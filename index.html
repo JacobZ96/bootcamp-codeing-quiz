@@ -8,17 +8,30 @@
     <title>Coding Quiz</title>
 </head>
 <body>
-    <main>
-        <div class="header">
+    <header class="header">
+        <div>
             <h2 id="high-score">High Score</h2>
             <h3 class="time" style="text-align:right;">Time</h3>
         </div>
+    </header>
     
-        <div class="main-text">
+    <main>
+    </div class="container"><div>
+        <div class="intro-section">
             <h1>Coding Quiz</h1>
             <p>Answer the following code-related questions within the time limit. Keep in mind that if you answer a question incorrectly it will penalize your score/time by 10 seconds.</p>
             <button id="startBtn">Start Quiz</button>
         </div>
+    <div class="question-section hide">
+         <h3 id="question-title">Question</h3>
+        <ul class="answers" id="answers">
+            <button id="opt-1">A</button>
+            <button id="opt-2">B</button> 
+            <button id="opt-3">C</button>
+            <button id="opt-4">D</button>
+        </ul>
+    </div>
+
     </main>
 
 

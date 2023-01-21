@@ -10,6 +10,51 @@
 // WHEN the game is over
 // THEN I can save my initials and my score
 var timeEl = document.querySelector(".time");
+var start = document.getElementById("startBtn");
+var myAnswers = document.querySelector(".answers");
+var option1 = document.querySelector("#opt-1");
+var option2 = document.querySelector("#opt-2");
+var option3 = document.querySelector("#opt-3");
+var option4 = document.querySelector("#opt-4");
+var intro = document.querySelector(".intro-section");
+var questionsDiv = document.querySelector(".question-section");
+var questionTitle = document.querySelector("#question-title");
+var userChoices = document.getElementById("answers");
+
+var index = 0;
+
+function startQuiz() {
+    intro.classList.add("hide");
+    questionsDiv.classList.remove("hide");
+    runQuestions();
+    setTime();
+}
+
+function runQuestions() {
+    questionTitle.textContent = myQuestions[index].question;
+    option1.textContent = myQuestions[index].answers.a;
+    option2.textContent = myQuestions[index].answers.b;
+    option3.textContent = myQuestions[index].answers.c;
+    option4.textContent = myQuestions[index].answers.d; 
+}
+
+userChoices.addEventListener("click", function(event){
+    let chosen = event.target.textContent;
+ 
+    if (chosen == myQuestions[index].correctAnswer) {
+        console.log("correct");
+    } else {
+        console.log("wrong");
+    }
+    showNext()
+})
+
+function showNext() {
+   index++
+   runQuestions();
+}
+
+
 
 var secondsLeft = 60; // Time alloted for the quiz 
 
@@ -22,7 +67,7 @@ var myQuestions = [
         c: "3",
         d: "4"
       },
-      correctAnswer: 'c'
+      correctAnswer: "3"
     },
     {
         question: "What is a tool used to debug code?",
@@ -32,7 +77,7 @@ var myQuestions = [
             c: "HTML",
             d: "CSS",
         },
-        correctAnswer: 'a'
+        correctAnswer: "console.log"
     },
     {
         question: "Which of these is the incorrect syntax for declaring a variable in JavaScript?",
@@ -42,7 +87,7 @@ var myQuestions = [
             c: "const myVariable",
             d: "MyVariable",
         },
-        correctAnswer: 'd'
+        correctAnswer: "MyVariable"
     },
     {
         question: "How do you create an object in JavaScript?",
@@ -52,7 +97,7 @@ var myQuestions = [
             c: "var obj = Object()",
             d: "var obj = Object.create()",
         },
-        correctAnswer: 'a'
+        correctAnswer: "var obj = {}"
     },
     {
         question: "Arrays in JavaScript can contain ________.",
@@ -62,7 +107,7 @@ var myQuestions = [
             c: "Booleans",
             d: "All of the above",
         },
-        correctAnswer: 'd'
+        correctAnswer: "All of the above"
     }
 ];
 
@@ -82,6 +127,7 @@ function sendMessage() {
     timeEl.textContent = "You ran out of time 😢";
 }
 
-//setTime();
-document.getElementById("startBtn").onclick = setTime();
+
+start.addEventListener("click", startQuiz);
+
 
