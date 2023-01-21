@@ -22,7 +22,8 @@ var questionTitle = document.querySelector("#question-title");
 var userChoices = document.getElementById("answers");
 var initials = document.querySelector(".add-initials")
 var secondsLeft = 40; // Time alloted for the quiz 
-
+var submit = document.getElementById("submitBtn");
+var timerInterval;
 var index = 0;
 
 var myQuestions = [ 
@@ -106,10 +107,11 @@ userChoices.addEventListener("click", function(event){
 
 function showNext() {
    index++
-   runQuestions();
-   if (myQuestions > myQuestions.length) {
-    endQuiz();
-   }
+   if (index >= myQuestions.length) {
+       endQuiz();
+       return;
+    }
+    runQuestions();
 }
 
 function addInitials() {
@@ -117,17 +119,14 @@ function addInitials() {
     initials.classList.remove("hide");
 }
 
-function showScore() {
-    
-}
+
 
 function setTime() {
-    var timerInterval = setInterval(function() {
+     timerInterval = setInterval(function() {
         secondsLeft--;
         timeEl.textContent = "Time: " + secondsLeft;
 
         if (secondsLeft <= 0) {
-            clearInterval(timerInterval);
             endQuiz();
         }
     }, 1000);
@@ -140,9 +139,28 @@ function sendMessage() {
 function endQuiz() {
     sendMessage();
     addInitials();
-    showScore();
+    clearInterval(timerInterval);
+    score = secondsLeft;
+    getHighScores();
 }
 
 start.addEventListener("click", startQuiz);
+var score = 0
+var userInput = document.getElementById("input");
+submit.addEventListener("click", function() {
+    var initials = userInput.value;
+    console.log(initials);
+    score = secondsLeft 
+    console.log(score);
+    localStorage.setItem(initials, score);
+})
 
 
+function getHighScores() {
+    // probably will be in a for loop 
+    var highScores =localStorage.getItem('jz');
+    var highScoreList = document.getElementById("high-score-list");
+    var listEl = document.createElement("li");
+    listEl.textContent = highScores;
+    highScoreList.append(listEl);
+}
