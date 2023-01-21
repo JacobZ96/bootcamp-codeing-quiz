@@ -11,65 +11,65 @@
 // THEN I can save my initials and my score
 var timeEl = document.querySelector(".time");
 
-var secondsLeft = 45; // Time alloted for the quiz 
+var secondsLeft = 60; // Time alloted for the quiz 
 
-var myQuestions = [ // Questions used for the quiz in an Array
+var myQuestions = [ 
     {    
-      question: "What is the capital of France?",
+      question: "What is the output of the following code? let myArray = [1, 2, 3];console.log(myArray.length)",
       answers: {
-        a: "Paris",
-        b: "London",
-        c: "Berlin",
-        d: "Rome"
+        a: "1",
+        b: "2",
+        c: "3",
+        d: "4"
       },
-      correctAnswer: 'a'
+      correctAnswer: 'c'
     },
     {
         question: "What is a tool used to debug code?",
         answers: {
             a: "console.log",
-            b: "Google",
-            c: "",
-            d: "",
+            b: "git/terminal",
+            c: "HTML",
+            d: "CSS",
         },
         correctAnswer: 'a'
     },
     {
-        question: "question 3",
+        question: "Which of these is the incorrect syntax for declaring a variable in JavaScript?",
         answers: {
-            a: "",
-            b: "",
-            c: "",
-            d: "",
-        },
-        correctAnswer: 'a'
-    },
-    {
-        question: "question 4",
-        answers: {
-            a: "",
-            b: "",
-            c: "",
-            d: "",
+            a: "var myVariable",
+            b: "let myVariable",
+            c: "const myVariable",
+            d: "MyVariable",
         },
         correctAnswer: 'd'
     },
     {
-        question: "question 5",
+        question: "How do you create an object in JavaScript?",
         answers: {
-            a: "",
-            b: "",
-            c: "",
-            d: "",
+            a: "var obj = {}",
+            b: "var obj = new Object()",
+            c: "var obj = Object()",
+            d: "var obj = Object.create()",
         },
-        correctAnswer: 'c'
+        correctAnswer: 'a'
+    },
+    {
+        question: "Arrays in JavaScript can contain ________.",
+        answers: {
+            a: "Stings",
+            b: "Numbers",
+            c: "Booleans",
+            d: "All of the above",
+        },
+        correctAnswer: 'd'
     }
 ];
 
 function setTime() {
     var timerInterval = setInterval(function() {
         secondsLeft--;
-        timeEl.textContent = secondsLeft + " time left";
+        timeEl.textContent = "Time: " + secondsLeft;
 
         if (secondsLeft === 0) {
             clearInterval(timerInterval);
@@ -84,3 +84,4 @@ function sendMessage() {
 
 //setTime();
 document.getElementById("startBtn").onclick = setTime();
+
