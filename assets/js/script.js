@@ -29,6 +29,7 @@ var secondsLeft = 40; // Time alloted for the quiz
 var submit = document.getElementById("submitBtn");
 var timerInterval;
 var index = 0;
+var playAgian = document.getElementById("play-agianBtn");
 
 // VARIABLE THAT CONTAINS THE QUESTIONS FOR THE QUIZ
 var myQuestions = [ 
@@ -178,3 +179,13 @@ function getHighScores() {
     listEl.textContent = highScores;
     highScoreList.append(listEl);
 }
+
+
+//function playGameAgian() {
+//}
+playAgian.addEventListener("click", function() {
+    // intro.classList.remove("hide");
+    questionsDiv.classList.remove("hide");
+    
+    startQuiz();
+});
