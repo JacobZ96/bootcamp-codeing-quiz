@@ -1,14 +1,18 @@
-// GIVEN I am taking a code quiz
-// WHEN I click the start button
-// THEN a timer starts and I am presented with a question
-// WHEN I answer a question
-// THEN I am presented with another question
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-// WHEN the game is over
-// THEN I can save my initials and my score
+// ACCEPTANCE CRITERIA FOR CHALLENGE
+    // GIVEN I am taking a code quiz
+    // WHEN I click the start button
+    // THEN a timer starts and I am presented with a question
+    // WHEN I answer a question
+    // THEN I am presented with another question
+    // WHEN I answer a question incorrectly
+    // THEN time is subtracted from the clock
+    // WHEN all questions are answered or the timer reaches 0
+    // THEN the game is over
+    // WHEN the game is over
+    // THEN I can save my initials and my score
+
+
+// VARIABLES THAT CONNECT ELEMENTS OF HTML TO JS
 var timeEl = document.querySelector(".time");
 var start = document.getElementById("startBtn");
 var myAnswers = document.querySelector(".answers");
@@ -26,6 +30,7 @@ var submit = document.getElementById("submitBtn");
 var timerInterval;
 var index = 0;
 
+// VARIABLE THAT CONTAINS THE QUESTIONS FOR THE QUIZ
 var myQuestions = [ 
     {    
       question: "What is the output of the following code? let myArray = [1, 2, 3];console.log(myArray.length)",
@@ -79,6 +84,7 @@ var myQuestions = [
     }
 ];
 
+// FUNCTION THAT STARTS THE QUIZ, HIDES CERTIAN PARTS OF THE PAGE AND DISPLAYES OTHERS
 function startQuiz() {
     intro.classList.add("hide");
     questionsDiv.classList.remove("hide");
@@ -86,6 +92,7 @@ function startQuiz() {
     setTime();
 }
 
+// FUNCTION THAT RUNS HOW THE QUESTIONS ARE DISPLAYED ON THE PAGE
 function runQuestions() {
     questionTitle.textContent = myQuestions[index].question;
     option1.textContent = myQuestions[index].answers.a;
@@ -94,6 +101,7 @@ function runQuestions() {
     option4.textContent = myQuestions[index].answers.d; 
 }
 
+// EVENTLISTENER THAT SUBTRACTS TIME FOR WRONG ANSWERS AND LOGS WHETHER THAT ANSWER CHOSEN WAS CORRECT OR NOT
 userChoices.addEventListener("click", function(event){
     let chosen = event.target.textContent;
     if (chosen == myQuestions[index].correctAnswer) {
@@ -105,6 +113,7 @@ userChoices.addEventListener("click", function(event){
     showNext();
 })
 
+// SHOWS THE NEXT QUESTION IN THE ARRAY
 function showNext() {
    index++
    if (index >= myQuestions.length) {
@@ -114,13 +123,14 @@ function showNext() {
     runQuestions();
 }
 
+// ADDS INITIALS DIV TO THE PAGE 
 function addInitials() {
     questionsDiv.classList.add("hide");
     initials.classList.remove("hide");
 }
 
 
-
+// FUNCTION TO CREATE A TIMER AND DISPLAYS MESSAGE IF TIME RUNS OUT 
 function setTime() {
      timerInterval = setInterval(function() {
         secondsLeft--;
@@ -136,6 +146,7 @@ function sendMessage() {
     timeEl.textContent = "You ran out of time 😢";
 }
 
+// FUNCTION TO END THE QUIZ, GIVES HIGH-SCORE, AND PLACE TO INPUT INITIALS
 function endQuiz() {
     sendMessage();
     addInitials();
@@ -144,7 +155,10 @@ function endQuiz() {
     getHighScores();
 }
 
+// EVENTLISTENER TO START THE QUIZ
 start.addEventListener("click", startQuiz);
+
+// VARIABLES AND EVENTLISTENER FOR KEEPING TRACK OF USERINPUTS AND SCORE FOR QUIZ
 var score = 0
 var userInput = document.getElementById("input");
 submit.addEventListener("click", function() {
@@ -155,7 +169,7 @@ submit.addEventListener("click", function() {
     localStorage.setItem(initials, score);
 })
 
-
+// DYNAMIC LIST TO KEEP TRACK OF HIGH-SCORES
 function getHighScores() {
     // probably will be in a for loop 
     var highScores =localStorage.getItem('jz');
