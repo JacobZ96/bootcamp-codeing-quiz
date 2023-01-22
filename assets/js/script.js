@@ -183,8 +183,10 @@ function getHighScores() {
 
 //function playGameAgian() {
 //}
-playAgian.addEventListener("click", function() {
-    // intro.classList.remove("hide");
-    questionsDiv.classList.remove("hide");
-    startQuiz();
-});
+// playAgian.addEventListener("click", function() {
+//     // intro.classList.remove("hide");
+//     questionsDiv.classList.remove("hide");
+//     startQuiz();
+// });
+
+// sort() method to make them display sorted
