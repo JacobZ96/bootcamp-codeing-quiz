@@ -186,6 +186,5 @@ function getHighScores() {
 playAgian.addEventListener("click", function() {
     // intro.classList.remove("hide");
     questionsDiv.classList.remove("hide");
-    
     startQuiz();
 });
