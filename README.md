@@ -1,7 +1,7 @@
 # bootcamp-codeing-quiz
 
 ## Description
-
+Quiz containing 5 questions regarding the topic of coding. The user can select answers for each question and if the question is wrong 5 seconds will be removed from the timer. The final score for the quiz is the time remaining of the timer. The user can enter their initals and save a high score to the page. 
 
 ## User Story
 
