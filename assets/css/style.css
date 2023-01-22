@@ -1,3 +1,45 @@
+*{
+    background-color:firebrick;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.intro-section {
+    text-align: center;
+}
+
+#para-section {
+    display:flex;
+    flex-wrap: wrap;
+}
+
+
 .hide {
     display: none;
-};
+}
+
+.answers {
+    display: block;
+    text-align: center;
+}
+
+button {
+	font-family: sans-serif;
+	font-size: 20px;
+	background-color: #279;
+	color: #fff;
+	border: 0px;
+	border-radius: 3px;
+	padding: 20px;
+	cursor: pointer;
+	margin-bottom: 20px;
+}
+
+button:hover{
+	background-color: #38a;
+}
