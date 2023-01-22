@@ -32,3 +32,4 @@ https://jacobz96.github.io/bootcamp-codeing-quiz/
 
 
 ## Screenshot 
+![screenshot of quiz when you open the webpage](/assets/images/week4.png)
